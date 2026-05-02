@@ -21,6 +21,10 @@ configure<ApplicationExtension> {
         targetSdk = 37
         versionCode = versionCodeInt
         versionName = versionNameString
+
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+        }
     }
 
     val freezerType = "CI"
