@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Freezer" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_night</item>
+        <item name="android:windowSplashScreenAnimationDuration">450</item>
+        <item name="android:windowSplashScreenBackground">@color/black</item>
+    </style>
+</resources>
