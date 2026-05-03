@@ -42,6 +42,7 @@ import nep.timeline.freezerUI.MainActivity.AppListViewModelSingleton.appListView
 import nep.timeline.freezerUI.R
 import nep.timeline.freezerUI.configs.ConfigManager
 import nep.timeline.freezerUI.configs.checkers.BinderModeChecker
+import nep.timeline.freezerUI.utils.VersionUtils
 import nep.timeline.freezer.provide.DataBinder
 import nep.timeline.freezerUI.ui.app.LocalIsWideScreen
 import nep.timeline.freezerUI.ui.app.LocalNavigator
@@ -53,7 +54,6 @@ import nep.timeline.freezerUI.ui.utils.WindowUtils
 import nep.timeline.freezerUI.ui.utils.pageContentPadding
 import nep.timeline.freezerUI.ui.utils.pageScrollModifiers
 import nep.timeline.freezerUI.ui.utils.rememberBlurBackdrop
-import nep.timeline.freezerUI.utils.VersionUtils
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardColors
 import top.yukonga.miuix.kmp.basic.CardDefaults
@@ -190,7 +190,7 @@ private fun InfoContent(
                         WarningCard(stringResource(R.string.rekernel_connect_error))
                     if (BinderModeChecker.getBinderMode() == BinderModeChecker.BinderMode.EBPF && nkbinderStatus == "IDLE")
                         WarningCard(stringResource(R.string.nkbinder_connect_error))
-                    if (warningCount > 0 || errorCount > 0)
+                    if (errorCount > 0)
                         WarningCard(stringResource(R.string.internal_error))
                     StatusCard(
                         active = true,
@@ -484,7 +484,7 @@ private fun InfoCard(working: Boolean, modifier: Modifier = Modifier, colors: Ca
             )
             InfoText(
                 title = stringResource(R.string.hook_type),
-                content = if (working) (DataBinder.getInstance().get("Hook_Type")) else stringResource(R.string.unknown)
+                content = if (working) DataBinder.getInstance().get("Hook_Type") else stringResource(R.string.unknown)
             )
             InfoText(
                 title = stringResource(R.string.android_version),

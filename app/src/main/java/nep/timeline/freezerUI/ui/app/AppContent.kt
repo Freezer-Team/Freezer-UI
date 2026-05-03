@@ -78,7 +78,11 @@ import nep.timeline.freezerUI.ui.navigation3.Navigator
 import nep.timeline.freezerUI.ui.navigation3.Route
 import nep.timeline.freezerUI.ui.page.AboutPage
 import nep.timeline.freezerUI.ui.page.AppPage
+import nep.timeline.freezerUI.ui.page.BatterySettingsPage
+import nep.timeline.freezerUI.ui.page.FreezerSettingsPage
 import nep.timeline.freezerUI.ui.page.InfoPage
+import nep.timeline.freezerUI.ui.page.MMSettingsPage
+import nep.timeline.freezerUI.ui.page.PUSHSettingsPage
 import nep.timeline.freezerUI.ui.page.SettingsPage
 import nep.timeline.freezerUI.ui.utils.AppContext
 import nep.timeline.freezerUI.ui.utils.BlurredBar
@@ -190,8 +194,41 @@ fun AppContent(
                         mainPagerState = mainPagerState
                     )
                 }
+
                 entry<Route.About> {
                     AboutPage(padding = padding)
+                }
+
+                entry<Route.FreezerSettings> {
+                    FreezerSettingsPage(
+                        active = active,
+                        padding = padding,
+                        scrollEndHaptic = appState.enableScrollEndHaptic
+                    )
+                }
+
+                entry<Route.PUSHSettings> {
+                    PUSHSettingsPage(
+                        active = active,
+                        padding = padding,
+                        scrollEndHaptic = appState.enableScrollEndHaptic
+                    )
+                }
+
+                entry<Route.MMSettings> {
+                    MMSettingsPage(
+                        active = active,
+                        padding = padding,
+                        scrollEndHaptic = appState.enableScrollEndHaptic
+                    )
+                }
+
+                entry<Route.BatterySettings> {
+                    BatterySettingsPage(
+                        active = active,
+                        padding = padding,
+                        scrollEndHaptic = appState.enableScrollEndHaptic
+                    )
                 }
             }
         }

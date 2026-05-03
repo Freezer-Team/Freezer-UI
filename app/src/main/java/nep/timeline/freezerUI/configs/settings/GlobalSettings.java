@@ -54,6 +54,10 @@ public class GlobalSettings {
     public int getProviderProcessingMode;
     @SerializedName("useDoze")
     public boolean useDoze;
+    @SerializedName("fcmfix")
+    public boolean fcmfix;
+    @SerializedName("blockAutoClear")
+    public boolean blockAutoClear;
     @SerializedName("checkForegroundService")
     public boolean checkForegroundService;
     @SerializedName("disableClearTask")

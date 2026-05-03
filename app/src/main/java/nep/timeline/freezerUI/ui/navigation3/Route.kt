@@ -13,4 +13,16 @@ sealed interface Route : NavKey {
 
     @Serializable
     data object About : Route
+
+    @Serializable
+    data object FreezerSettings : Route
+
+    @Serializable
+    data object MMSettings : Route
+
+    @Serializable
+    data object PUSHSettings : Route
+
+    @Serializable
+    data object BatterySettings : Route
 }

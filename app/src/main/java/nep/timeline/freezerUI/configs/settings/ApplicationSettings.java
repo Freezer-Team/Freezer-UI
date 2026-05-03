@@ -54,4 +54,6 @@ public class ApplicationSettings {
     public Set<String> bluetoothCheckApps = new HashSet<>();
     @SerializedName("ignoreBinderApps")
     public Set<String> ignoreBinderApps = new HashSet<>();
+    @SerializedName("allowAPIInjectionApps")
+    public Set<String> allowAPIInjectionApps = new HashSet<>();
 }
