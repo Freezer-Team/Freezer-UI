@@ -3,7 +3,7 @@ package nep.timeline.freezer.binders;
 public interface PackageInterface extends android.os.IInterface
 {
     /** Default implementation for PackageInterface. */
-    public static class Default implements PackageInterface
+    public static class Default implements nep.timeline.freezer.binders.PackageInterface
     {
         @Override public rikka.parcelablelist.ParcelableListSlice<android.content.pm.PackageInfo> getInstalledPackagesAsUser(int flags, int userId) throws android.os.RemoteException
         {
@@ -23,7 +23,7 @@ public interface PackageInterface extends android.os.IInterface
         }
     }
     /** Local-side IPC implementation stub class. */
-    public static abstract class Stub extends android.os.Binder implements PackageInterface
+    public static abstract class Stub extends android.os.Binder implements nep.timeline.freezer.binders.PackageInterface
     {
         /** Construct the stub at attach it to the interface. */
         public Stub()
@@ -34,16 +34,16 @@ public interface PackageInterface extends android.os.IInterface
          * Cast an IBinder object into an nep.timeline.freezer.binders.PackageInterface interface,
          * generating a proxy if needed.
          */
-        public static PackageInterface asInterface(android.os.IBinder obj)
+        public static nep.timeline.freezer.binders.PackageInterface asInterface(android.os.IBinder obj)
         {
             if ((obj==null)) {
                 return null;
             }
             android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-            if (((iin!=null)&&(iin instanceof PackageInterface))) {
-                return ((PackageInterface)iin);
+            if (((iin!=null)&&(iin instanceof nep.timeline.freezer.binders.PackageInterface))) {
+                return ((nep.timeline.freezer.binders.PackageInterface)iin);
             }
-            return new PackageInterface.Stub.Proxy(obj);
+            return new nep.timeline.freezer.binders.PackageInterface.Stub.Proxy(obj);
         }
         @Override public android.os.IBinder asBinder()
         {
@@ -105,7 +105,7 @@ public interface PackageInterface extends android.os.IInterface
             }
             return true;
         }
-        protected static class Proxy implements PackageInterface
+        protected static class Proxy implements nep.timeline.freezer.binders.PackageInterface
         {
             private android.os.IBinder mRemote;
             public Proxy(android.os.IBinder remote)

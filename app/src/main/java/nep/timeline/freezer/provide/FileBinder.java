@@ -4,8 +4,12 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
 
+import java.util.List;
+
 import nep.timeline.freezer.binders.FileInterface;
 import nep.timeline.freezerUI.binder.BinderService;
+
+import rikka.parcelablelist.StringListSlice;
 
 public class FileBinder extends FileInterface.Stub {
     public static FileInterface getInstance() {
@@ -26,5 +30,11 @@ public class FileBinder extends FileInterface.Stub {
     public String readString(String name) throws RemoteException { throw new UnsupportedOperationException(); }
 
     @Override
+    public StringListSlice readLargeString(String name) throws RemoteException { throw new UnsupportedOperationException(); }
+
+    @Override
     public boolean writeString(String name, String value) throws RemoteException { throw new UnsupportedOperationException(); }
+
+    @Override
+    public List<String> ls(String path) throws RemoteException { throw new UnsupportedOperationException(); }
 }

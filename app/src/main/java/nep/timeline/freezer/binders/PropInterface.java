@@ -3,7 +3,7 @@ package nep.timeline.freezer.binders;
 public interface PropInterface extends android.os.IInterface
 {
     /** Default implementation for PropInterface. */
-    public static class Default implements PropInterface
+    public static class Default implements nep.timeline.freezer.binders.PropInterface
     {
         @Override public java.lang.String get(java.lang.String prop) throws android.os.RemoteException
         {
@@ -15,7 +15,7 @@ public interface PropInterface extends android.os.IInterface
         }
     }
     /** Local-side IPC implementation stub class. */
-    public static abstract class Stub extends android.os.Binder implements PropInterface
+    public static abstract class Stub extends android.os.Binder implements nep.timeline.freezer.binders.PropInterface
     {
         /** Construct the stub at attach it to the interface. */
         public Stub()
@@ -26,16 +26,16 @@ public interface PropInterface extends android.os.IInterface
          * Cast an IBinder object into an nep.timeline.freezer.binders.PropInterface interface,
          * generating a proxy if needed.
          */
-        public static PropInterface asInterface(android.os.IBinder obj)
+        public static nep.timeline.freezer.binders.PropInterface asInterface(android.os.IBinder obj)
         {
             if ((obj==null)) {
                 return null;
             }
             android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-            if (((iin!=null)&&(iin instanceof PropInterface))) {
-                return ((PropInterface)iin);
+            if (((iin!=null)&&(iin instanceof nep.timeline.freezer.binders.PropInterface))) {
+                return ((nep.timeline.freezer.binders.PropInterface)iin);
             }
-            return new PropInterface.Stub.Proxy(obj);
+            return new nep.timeline.freezer.binders.PropInterface.Stub.Proxy(obj);
         }
         @Override public android.os.IBinder asBinder()
         {
@@ -73,7 +73,7 @@ public interface PropInterface extends android.os.IInterface
             }
             return true;
         }
-        protected static class Proxy implements PropInterface
+        protected static class Proxy implements nep.timeline.freezer.binders.PropInterface
         {
             private android.os.IBinder mRemote;
             public Proxy(android.os.IBinder remote)

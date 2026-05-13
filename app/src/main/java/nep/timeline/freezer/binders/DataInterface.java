@@ -2,7 +2,7 @@ package nep.timeline.freezer.binders;
 public interface DataInterface extends android.os.IInterface
 {
     /** Default implementation for DataInterface. */
-    public static class Default implements DataInterface
+    public static class Default implements nep.timeline.freezer.binders.DataInterface
     {
         @Override public java.lang.String get(java.lang.String name) throws android.os.RemoteException
         {
@@ -14,7 +14,7 @@ public interface DataInterface extends android.os.IInterface
         }
     }
     /** Local-side IPC implementation stub class. */
-    public static abstract class Stub extends android.os.Binder implements DataInterface
+    public static abstract class Stub extends android.os.Binder implements nep.timeline.freezer.binders.DataInterface
     {
         /** Construct the stub and attach it to the interface. */
         @SuppressWarnings("this-escape")
@@ -26,16 +26,16 @@ public interface DataInterface extends android.os.IInterface
          * Cast an IBinder object into an nep.timeline.freezer.binders.DataInterface interface,
          * generating a proxy if needed.
          */
-        public static DataInterface asInterface(android.os.IBinder obj)
+        public static nep.timeline.freezer.binders.DataInterface asInterface(android.os.IBinder obj)
         {
             if ((obj==null)) {
                 return null;
             }
             android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-            if (((iin!=null)&&(iin instanceof DataInterface))) {
-                return ((DataInterface)iin);
+            if (((iin!=null)&&(iin instanceof nep.timeline.freezer.binders.DataInterface))) {
+                return ((nep.timeline.freezer.binders.DataInterface)iin);
             }
-            return new DataInterface.Stub.Proxy(obj);
+            return new nep.timeline.freezer.binders.DataInterface.Stub.Proxy(obj);
         }
         @Override public android.os.IBinder asBinder()
         {
@@ -69,7 +69,7 @@ public interface DataInterface extends android.os.IInterface
             }
             return true;
         }
-        protected static class Proxy implements DataInterface
+        protected static class Proxy implements nep.timeline.freezer.binders.DataInterface
         {
             private android.os.IBinder mRemote;
             public Proxy(android.os.IBinder remote)

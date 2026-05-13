@@ -104,7 +104,7 @@ public interface LogInterface extends android.os.IInterface
             }
             return true;
         }
-        protected static class Proxy implements LogInterface
+        protected static class Proxy implements nep.timeline.freezer.binders.LogInterface
         {
             private android.os.IBinder mRemote;
             public Proxy(android.os.IBinder remote)
