@@ -444,6 +444,33 @@ private fun SettingsContent(
                     }
                 }
             }
+            item(key = "settingsScript") {
+                SmallTitle(text = "Script")
+                Card(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .padding(bottom = 12.dp)
+                        .then(
+                            if (cardBlurActive)
+                                Modifier.clip(RoundedCornerShape(CardDefaults.CornerRadius))
+                                    .textureBlur(
+                                        backdrop = imageBackdrop,
+                                        blurRadius = BackgroundManager.cardBlurRadius,
+                                        colors = BlurColors(
+                                            blendColors = listOf(
+                                                BlendColorEntry(color = colorScheme.surface.copy(BackgroundManager.cardBlurAlpha)),
+                                            ),
+                                        )
+                                    )
+                            else Modifier
+                        ), colors = cardColors,
+                ) {
+                    ArrowPreference(
+                        title = "Reload Scripts",
+                        onClick = { DataBinder.getInstance().get("RELOAD_SCRIPTS") }
+                    )
+                }
+            }
             item(key = "settingsPersonalization") {
                 val context = LocalContext.current
                 val scope = rememberCoroutineScope()
