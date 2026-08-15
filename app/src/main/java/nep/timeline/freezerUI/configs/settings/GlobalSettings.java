@@ -46,6 +46,8 @@ public class GlobalSettings {
     public boolean foregroundLastAppWhenScreenOff;
     @SerializedName("binderFreezeMode")
     public int binderFreezeMode;
+    @SerializedName("cacheBinderMode")
+    public int cacheBinderMode;
     @SerializedName("binderMode")
     public int binderMode;
     @SerializedName("compactMode")
@@ -54,8 +56,6 @@ public class GlobalSettings {
     public int compactDelay = 8;
     @SerializedName("ignorePushBroadcasts")
     public boolean ignorePushBroadcasts;
-    //@SerializedName("safetyFrozen")
-    //public boolean safetyFrozen;
     @SerializedName("getProviderProcessingMode")
     public int getProviderProcessingMode;
     @SerializedName("useDoze")
@@ -86,12 +86,8 @@ public class GlobalSettings {
     public int batteryOptControlMode;
     @SerializedName("suExecute")
     public boolean suExecute;
-    //@SerializedName("disableForceTotalFreeze")
-    //public boolean disableForceTotalFreeze;
     @SerializedName("backgroundIntent")
     public boolean backgroundIntent;
-    //@SerializedName("debugMode")
-    //public boolean debugMode;
     @SerializedName("computeOOM")
     public boolean computeOOM;
     @SerializedName("compatibleMode")
@@ -102,10 +98,6 @@ public class GlobalSettings {
     public boolean extremeStandbyMode;
     @SerializedName("superStandbyMode")
     public boolean superStandbyMode = true;
-    //@SerializedName("useOldIntent")
-    //public boolean useOldIntent;
-    //@SerializedName("ignoreSync")
-    //public boolean ignoreSync;
     @SerializedName("dumpThaw")
     public boolean dumpThaw;
     @SerializedName("freezeInterval")
@@ -116,8 +108,6 @@ public class GlobalSettings {
     public long binderInterval = 3000;
     @SerializedName("flymeInterval")
     public long flymeInterval = 5000;
-    //@SerializedName("skipBroadcast")
-    //public boolean skipBroadcast;
     @SerializedName("batteryOptIgnoreProMode")
     public boolean batteryOptIgnoreProMode;
     @SerializedName("proMode")

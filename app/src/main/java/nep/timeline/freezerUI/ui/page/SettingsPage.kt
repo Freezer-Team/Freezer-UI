@@ -1,12 +1,10 @@
 @file:OptIn(ExperimentalScrollBarApi::class)
 package nep.timeline.freezerUI.ui.page
 
-import android.content.ComponentName
 import android.content.Context
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.UiThread
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -45,12 +43,12 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import nep.timeline.freezer.provide.DataBinder
+import nep.timeline.freezer.provide.FileBinder
 import nep.timeline.freezerUI.GlobalVars
 import nep.timeline.freezerUI.R
 import nep.timeline.freezerUI.configs.ConfigManager
 import nep.timeline.freezerUI.configs.checkers.SettingsConfigChecker
-import nep.timeline.freezer.provide.DataBinder
-import nep.timeline.freezer.provide.FileBinder
 import nep.timeline.freezerUI.ui.app.LocalIsWideScreen
 import nep.timeline.freezerUI.ui.app.LocalNavigator
 import nep.timeline.freezerUI.ui.app.LocalUpdateAppState
@@ -62,10 +60,8 @@ import nep.timeline.freezerUI.ui.utils.BackgroundManager
 import nep.timeline.freezerUI.ui.utils.BackupUtils
 import nep.timeline.freezerUI.ui.utils.BlurredBar
 import nep.timeline.freezerUI.ui.utils.UserUtils
-import nep.timeline.freezerUI.ui.utils.getEnable
 import nep.timeline.freezerUI.ui.utils.pageContentPadding
 import nep.timeline.freezerUI.ui.utils.pageScrollModifiers
-import nep.timeline.freezerUI.ui.utils.setEnable
 import nep.timeline.freezerUI.ui.utils.textureBlur
 import nep.timeline.freezerUI.ui.viewModel.LoginCardView
 import top.yukonga.miuix.kmp.basic.Card
@@ -130,18 +126,6 @@ fun SettingsPage(
         )
     }
 }
-
-@set:UiThread
-@get:UiThread
-var isLauncherIconEnabled: Boolean
-    get() {
-        val componentName = ComponentName(AppContext.context, "nep.timeline.freezer.activity.MainActivityAlias")
-        return componentName.getEnable(AppContext.context)
-    }
-    set(enabled) {
-        val componentName = ComponentName(AppContext.context, "nep.timeline.freezer.activity.MainActivityAlias")
-        componentName.setEnable(AppContext.context, enabled)
-    }
 
 @Composable
 private fun SettingsContent(
@@ -535,18 +519,6 @@ private fun SettingsContent(
                             navigationStyle.intValue = it
                             GlobalVars.globalSettings.navigationStyle = it
                             updateAppState { state -> state.copy(navigationStyle = it) }
-                            ConfigManager.saveConfigWithBinder()
-                        }
-                    )
-
-                    val hideLauncherIcon =
-                        remember { mutableStateOf(!isLauncherIconEnabled) }
-                    SwitchPreference(
-                        title = stringResource(R.string.hide_launcher_icon),
-                        checked = hideLauncherIcon.value,
-                        onCheckedChange = {
-                            hideLauncherIcon.value = it
-                            isLauncherIconEnabled = !it
                             ConfigManager.saveConfigWithBinder()
                         }
                     )

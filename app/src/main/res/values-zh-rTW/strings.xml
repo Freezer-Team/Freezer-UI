@@ -181,6 +181,13 @@
     <string name="skip_broadcast">跳過廣播</string>
     <string name="skip_broadcast_desc">跳過廣播而不是解凍</string>
     <string name="cache_async">非同步緩存</string>
+    <string name="cache_binder_default">預設</string>
+    <string name="cache_binder_drop">丟棄</string>
+    <string name="cache_binder_disable">關閉</string>
+    <string name="cache_binder_only_proxy">仅代理</string>
+    <string name="cache_binder_proxy_and_cache">緩存並代理</string>
+    <string name="cache_binder_radical">更激進的處理方式</string>
+    <string name="cache_binder_unsafe">不稳定的处理方式</string>
     <string name="feature_warning">開啟後可能出現問題，請謹慎開啟！</string>
     <string name="cache_process">緩存已暫停執行進程</string>
     <string name="memory_compact">記憶體優化</string>

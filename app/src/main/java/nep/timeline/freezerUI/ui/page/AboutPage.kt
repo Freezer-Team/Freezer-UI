@@ -391,42 +391,41 @@ private fun AboutContent(
                 fontWeight = FontWeight.Bold,
                 fontSize = 35.sp,
             )
-            if (BuildConfig.FREEZER_TYPE != "RELEASE")
-                Text(
-                    modifier = Modifier.padding(top = 12.dp, bottom = 5.dp)
-                        .onGloballyPositioned { coordinates ->
-                            if (projectNameY != 0f) return@onGloballyPositioned
-                            val y = coordinates.positionInWindow().y
-                            val size = coordinates.size
-                            projectNameY = y + size.height
-                        }
-                        .graphicsLayer {
-                            alpha = 1 - projectNameProgress
-                            scaleX = 1 - (projectNameProgress * 0.05f)
-                            scaleY = 1 - (projectNameProgress * 0.05f)
-                        }
-                        .then(
-                            if (backdrop != null) {
-                                Modifier
-                                    .textureBlur(
-                                        backdrop = backdrop,
-                                        shape = RoundedCornerShape(16.dp),
-                                        blurRadius = 150f,
-                                        noiseCoefficient = noiseCoefficient,
-                                        colors = BlurColors(
-                                            blendColors = logoBlend,
-                                        ),
-                                        contentBlendMode = ComposeBlendMode.DstIn,
-                                    )
-                            } else {
-                                Modifier
-                            },
-                        ),
-                    text = BuildConfig.FREEZER_TYPE,
-                    color = MiuixTheme.colorScheme.onBackground,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 35.sp,
-                )
+            Text(
+                modifier = Modifier.padding(top = 12.dp, bottom = 5.dp)
+                    .onGloballyPositioned { coordinates ->
+                        if (projectNameY != 0f) return@onGloballyPositioned
+                        val y = coordinates.positionInWindow().y
+                        val size = coordinates.size
+                        projectNameY = y + size.height
+                    }
+                    .graphicsLayer {
+                        alpha = 1 - projectNameProgress
+                        scaleX = 1 - (projectNameProgress * 0.05f)
+                        scaleY = 1 - (projectNameProgress * 0.05f)
+                    }
+                    .then(
+                        if (backdrop != null) {
+                            Modifier
+                                .textureBlur(
+                                    backdrop = backdrop,
+                                    shape = RoundedCornerShape(16.dp),
+                                    blurRadius = 150f,
+                                    noiseCoefficient = noiseCoefficient,
+                                    colors = BlurColors(
+                                        blendColors = logoBlend,
+                                    ),
+                                    contentBlendMode = ComposeBlendMode.DstIn,
+                                )
+                        } else {
+                            Modifier
+                        },
+                    ),
+                text = "OSS",
+                color = MiuixTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.Bold,
+                fontSize = 35.sp,
+            )
             Text(
                 modifier = Modifier.fillMaxWidth()
                     .graphicsLayer {

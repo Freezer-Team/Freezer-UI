@@ -29,8 +29,6 @@ configure<ApplicationExtension> {
         }
     }
 
-    val freezerType = "CI"
-
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
@@ -43,7 +41,6 @@ configure<ApplicationExtension> {
             val dateFormat = SimpleDateFormat("MMddHHmm", Locale.getDefault())
             val buildTime = dateFormat.format(Date())
             buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
-            buildConfigField("String", "FREEZER_TYPE", "\"$freezerType\"")
         }
         getByName("debug") {
             proguardFiles(
@@ -54,7 +51,6 @@ configure<ApplicationExtension> {
             val dateFormat = SimpleDateFormat("MMddHHmm", Locale.getDefault())
             val buildTime = dateFormat.format(Date())
             buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
-            buildConfigField("String", "FREEZER_TYPE", "\"$freezerType\"")
         }
     }
 
@@ -103,8 +99,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.46")
     implementation("commons-io:commons-io:2.22.0")
     implementation("dev.rikka.rikkax.parcelablelist:parcelablelist:2.0.1")
-    implementation("androidx.navigation3:navigation3-runtime:1.1.5")
-    implementation("androidx.navigation3:navigation3-runtime-android:1.1.5")
+    implementation("androidx.navigation3:navigation3-runtime:1.1.6")
+    implementation("androidx.navigation3:navigation3-runtime-android:1.1.6")
     implementation("io.coil-kt.coil3:coil-compose:3.5.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0")
