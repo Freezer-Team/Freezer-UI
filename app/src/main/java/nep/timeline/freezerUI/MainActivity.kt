@@ -28,6 +28,7 @@ import nep.timeline.freezerUI.configs.settings.GlobalSettings
 import nep.timeline.freezer.provide.DataBinder
 import nep.timeline.freezer.provide.FileBinder
 import nep.timeline.freezerUI.ui.app.App
+import nep.timeline.freezerUI.ui.app.AppTheme
 import nep.timeline.freezerUI.ui.dialog.ActiveDialog
 import nep.timeline.freezerUI.ui.dialog.ExceptionDialog
 import nep.timeline.freezerUI.ui.dialog.RootDialog
@@ -126,12 +127,19 @@ class MainActivity : ComponentActivity() {
 
             DisposableEffect(darkMode) {
                 enableEdgeToEdge(
-                    statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { darkMode },
-                    navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { darkMode },
+                    statusBarStyle = SystemBarStyle.auto(
+                        Color.TRANSPARENT,
+                        Color.TRANSPARENT
+                    ) { darkMode },
+                    navigationBarStyle = SystemBarStyle.auto(
+                        Color.TRANSPARENT,
+                        Color.TRANSPARENT
+                    ) { darkMode },
                 )
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    window.isNavigationBarContrastEnforced = false // Xiaomi moment, this code must be here
+                    window.isNavigationBarContrastEnforced =
+                        false // Xiaomi moment, this code must be here
                 }
 
                 onDispose {}
@@ -141,53 +149,56 @@ class MainActivity : ComponentActivity() {
 
             val binder = DataBinder.getInstance()
 
-            val notActive = remember { mutableStateOf(binder == null) }
-            XPActiveDialog(notActive)
+            AppTheme {
+                val notActive = remember { mutableStateOf(binder == null) }
+                XPActiveDialog(notActive)
 
-            if (!notActive.value) {
-                var success = false
-                try {
-                    val isExists = FileBinder.getInstance().fileIsExists(GlobalVars.CONFIG_DIR)
-                    if (!isExists) {
-                        FileBinder.getInstance().makeDir(GlobalVars.CONFIG_DIR)
-                        Toast.makeText(
-                            this,
-                            resources.getString(R.string.first_use),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        startActivity(
-                            Intent().setAction("android.intent.action.VIEW")
-                                .setData("https://docs.sakion.top".toUri())
-                        )
-                        exitProcess(0)
+                if (!notActive.value) {
+                    var success = false
+                    try {
+                        val isExists = FileBinder.getInstance().fileIsExists(GlobalVars.CONFIG_DIR)
+                        if (!isExists) {
+                            FileBinder.getInstance().makeDir(GlobalVars.CONFIG_DIR)
+                            Toast.makeText(
+                                this,
+                                resources.getString(R.string.first_use),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            startActivity(
+                                Intent().setAction("android.intent.action.VIEW")
+                                    .setData("https://docs.sakion.top".toUri())
+                            )
+                            exitProcess(0)
+                        }
+
+                        ConfigManager.readConfigWithBinder()
+                        success = true
+                    } catch (_: RemoteException) {
+                        ActiveDialog(remember { mutableStateOf(true) })
+                    } catch (_: SecurityException) {
+                        ActiveDialog(remember { mutableStateOf(true) })
+                    } catch (_: NullPointerException) {
+                        ActiveDialog(remember { mutableStateOf(true) })
+                    } catch (e: Exception) {
+                        val clip = ClipData.newPlainText("text", Log.getStackTraceString(e))
+                        val manager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                        manager.setPrimaryClip(clip)
+                        ExceptionDialog(remember { mutableStateOf(true) })
                     }
 
-                    ConfigManager.readConfigWithBinder()
-                    success = true
-                } catch (_: RemoteException) {
-                    ActiveDialog(remember { mutableStateOf(true) })
-                } catch (_: SecurityException) {
-                    ActiveDialog(remember { mutableStateOf(true) })
-                } catch (_: NullPointerException) {
-                    ActiveDialog(remember { mutableStateOf(true) })
-                } catch (e: Exception) {
-                    val clip = ClipData.newPlainText("text", Log.getStackTraceString(e))
-                    val manager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-                    manager.setPrimaryClip(clip)
-                    ExceptionDialog(remember { mutableStateOf(true) })
-                }
-
-                if (success) {
-                    val isNotRoot = remember { mutableStateOf(!EnvUtils.checkRoot() && GlobalVars.globalSettings.suExecute) }
-                    RootDialog(isNotRoot)
+                    if (success) {
+                        val isNotRoot =
+                            remember { mutableStateOf(!EnvUtils.checkRoot() && GlobalVars.globalSettings.suExecute) }
+                        RootDialog(isNotRoot)
+                    } else {
+                        GlobalVars.globalSettings = GlobalSettings()
+                    }
                 } else {
                     GlobalVars.globalSettings = GlobalSettings()
                 }
-            } else {
-                GlobalVars.globalSettings = GlobalSettings()
-            }
 
-            App(!notActive.value)
+                App(!notActive.value)
+            }
         }
     }
 }
