@@ -281,8 +281,8 @@ private fun FreezerSettingsContent(
                         }
 
                         val cacheBinderItems = listOf(
-                            stringResource(R.string.cache_binder_proxy_and_cache),
                             stringResource(R.string.cache_binder_only_proxy),
+                            stringResource(R.string.cache_binder_proxy_and_cache),
                             stringResource(R.string.cache_binder_radical),
                             stringResource(R.string.cache_binder_unsafe)
                         )
