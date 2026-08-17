@@ -9,8 +9,6 @@ import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.dialogs.TipDialog;
 import com.kongzue.dialogx.dialogs.WaitDialog;
 
-import java.util.List;
-
 import nep.timeline.freezer.binders.VerificationInterface;
 import nep.timeline.freezer.provide.VerificationBinder;
 import nep.timeline.freezerUI.ui.utils.AppContext;
@@ -30,7 +28,7 @@ public class Verification {
                 return false;
             }
 
-            String result = verificationInterface.verification(requestType, username, password, List.of(username, UserUtils.INSTANCE.getUserData().split("\n")[0]));
+            String result = verificationInterface.verification(requestType, username, password);
             if (result == null) {
                 TipDialog.show("验证服务器无响应，请重启设备后重试！", WaitDialog.TYPE.ERROR, 3000);
                 return false;
